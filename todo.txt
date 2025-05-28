@@ -1,0 +1,4 @@
+* UV-based setup (1 line install and run!)
+* Platform testing
+* alternative input device (not keyboard)?
+
