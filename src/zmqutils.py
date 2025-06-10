@@ -143,7 +143,43 @@ def start_test():
     # create queues, and then start the processes
     zmq_port = 5555
     loop_test(zmq_port)
-    
+
+
+# utils...
+def prediction_loop(predict_fn, port=5556):
+    # synchronous reply loop -- receive touch events and reply with predictions
+    def loop_fn(touch_input):
+        # respond to touch events
+        if "touch" in touch_input:
+            # decode it, predict and send a response
+            x = np.array(touch_input["touch"]).astype(np.float32).reshape(1, 270)
+            seq = touch_input["seq"]
+            y = predict_fn(x)
+            msg = {
+                "target": {
+                    "x": float(y[0, 0]),
+                    "y": float(y[0, 1]),
+                    "radius": float(y[0, 2]),
+                },
+                "seq": seq,
+            }
+            print(f"{seq}                     \r", end="")
+            return msg
+        # queue shutdown
+        if "quit" in touch_input:
+            raise StopIteration
+
+    sync_rep_loop(port, loop_fn)
+
+def launch_with_params(params, timeout=0):
+    params["zmq_port"] = "5556"
+    # launch the key demo with the interleaved parameters/values
+    call_params = []
+    for k, v in params.items():
+        if v is not None:
+            call_params.append(f"--{k}")
+            call_params.append(str(v))
+    safe_launch("src/key_demo.py", args=call_params, timeout=timeout)    
 
 if __name__=="__main__":
     start_test()

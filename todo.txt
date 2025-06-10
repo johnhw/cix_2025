@@ -1,4 +1,5 @@
-* UV-based setup (1 line install and run!)
+* UV-based setup (1 line install and run!) [done, to test]
 * Platform testing
 * alternative input device (not keyboard)?
-
+* latent space example
+* flow-based modelling example 

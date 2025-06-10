@@ -1,17 +1,17 @@
-# CIX 2024: Forward and Inverse Modelling in HCI
+# CIX 2025: Forward and Inverse Modelling in HCI
 ![CI](imgs/header.png)
 
-* 8th International Computational Interaction Summer School 2024: Luxembourg
+* 9th International Computational Interaction Summer School 2025: Sorbonne University, Paris, France.
 * Notes on forward and inverse modelling in HCI.
 * **John H. Williamson**, *University of Glasgow*.
 
 ![CI](imgs/finger_track.png)
 
 # Installation
-* Create a virtual environment (e.g. if using conda `conda create -n cix2024_jhw`)
-* Activate it (if necessary, e.g. `conda activate cix2024_jhw`)
-* Install the requirements with `pip install -r requirements.txt`
-* Open  [01_Introduction.ipynb](01_Introduction.ipynb) 
+* Clone the repo.
+* If `uv` is not installed, `pip install uv`.
+* `uv run jupyter notebook 01_Introduction.ipynb`should get you started
+* Try `uv run src/key_demo.py` to check the keyboard tracking demo is working.
 
 # Acknowledgements
 ![DIFAI](imgs/difai.png)
